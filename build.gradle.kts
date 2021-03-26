@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8", "1.4.31"))
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.1")
     testImplementation("org.assertj:assertj-core:3.19.0")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.7.1")
