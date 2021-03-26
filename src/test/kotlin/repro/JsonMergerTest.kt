@@ -17,14 +17,14 @@ internal class JsonMergerTest {
         val changes = JsonNodeFactory.instance.objectNode().put("username", "updated")
         val original = KtPerson("original", KtAddress("Rivoli", "Paris"))
         val merged = JsonMerger(jacksonObjectMapper()).merge(changes, original)
-        assertThat(merged).isEqualToComparingFieldByField(original.copy("updated"))
+        assertThat(merged).usingRecursiveComparison().isEqualTo(original.copy("updated"))
     }
 
     @Test
     fun `fails when nested`() {
         val original = KtPerson("original", KtAddress("Rivoli", "Paris"))
         val merged = JsonMerger(jacksonObjectMapper()).merge(nestedChanges(), original)
-        assertThat(merged).isEqualToComparingFieldByFieldRecursively(
+        assertThat(merged).usingRecursiveComparison().isEqualTo(
             KtPerson(
                 "updated",
                 KtAddress("Magenta", "Paris")
@@ -42,7 +42,7 @@ internal class JsonMergerTest {
             }
         }
         val merged = JsonMerger(ObjectMapper()).merge(nestedChanges(), original)
-        assertThat(merged).isEqualToComparingFieldByFieldRecursively(
+        assertThat(merged).usingRecursiveComparison().isEqualTo(
             KtPerson(
                 "updated",
                 KtAddress("Magenta", "Paris")
